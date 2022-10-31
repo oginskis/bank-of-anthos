@@ -1,0 +1,44 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: accounts-db-postgresql
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: accounts-db-postgresql
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: External
+    external:
+      metric:
+        name: custom.googleapis.com|mypostgres|pg_stat_database_current_connections
+        selector:
+          matchLabels:
+            queue: "worker_tasks"
+      target:
+          type: AverageValue
+          averageValue: 30
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: accounts-db-pgpool
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: accounts-db-pgpool
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: External
+    external:
+      metric:
+        name: custom.googleapis.com|mypostgres|pg_stat_database_current_connections
+      target:
+          type: AverageValue
+          averageValue: 30
+
+# custom.googleapis.com|postgresql|pg_stat_database_numbackends
