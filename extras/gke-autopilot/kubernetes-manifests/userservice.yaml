@@ -82,9 +82,11 @@ spec:
           requests:
             cpu: 500m
             memory: 512Mi
+            ephemeral-storage: 1Gi
           limits:
             cpu: 500m
             memory: 512Mi
+            ephemeral-storage: 1Gi
       volumes:
       - name: keys
         secret:

@@ -121,9 +121,11 @@ spec:
           requests:
             cpu: 250m
             memory: 512Mi
+            ephemeral-storage: 1Gi
           limits:
             cpu: 250m
             memory: 512Mi
+            ephemeral-storage: 1Gi
       volumes:
       - name: publickey
         secret:
@@ -161,14 +163,4 @@ spec:
       name: frontend
       port:
         number: 8080
-  # rules:
-  # - http:
-  #     paths:
-  #     - path: /*
-  #       pathType: ImplementationSpecific
-  #       backend:
-  #         service:
-  #           name: frontend
-  #           port:
-  #             number: 8080
 # [START gke_boa_kubernetes_manifests_frontend_ingress_frontend]
