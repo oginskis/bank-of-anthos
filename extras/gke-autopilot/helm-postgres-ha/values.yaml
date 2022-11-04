@@ -1,5 +1,9 @@
 fullnameOverride: accounts-db
 postgresql:
+  # pgpool[vmax_pool*num_init_children] <= postgresql[max_connections - superuser_reserved_connections]
+  # 4 * 32 <= 2 * (128 + 3). 3 is reserved number of connections by postgres
+  # (no query canceling needed)
+  postgresql.maxConnections: 259
   username: accounts-admin
   password: accounts-pwd
   database: accounts-db
@@ -17,7 +21,8 @@ postgresql:
 
 pgpool:
   reservedConnections: 0
-  childMaxConnections: 32
+  maxPool: 4
+  numInitChildren: 32
   sidecars:
     - name: metrics
       image: pgpool/pgpool2_exporter:latest
