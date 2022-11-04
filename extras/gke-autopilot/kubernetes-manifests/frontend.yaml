@@ -42,7 +42,8 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: gcr.io/bank-of-anthos-ci/frontend:v0.5.9
+        image: gcr.io/lustrous-baton-363720/bank-of-antos/frontend:latest
+        imagePullPolicy: Always
         volumeMounts:
         - name: publickey
           mountPath: "/tmp/.ssh"
@@ -61,6 +62,8 @@ spec:
          # Valid levels are debug, info, warning, error, critical. If no valid level is set, gunicorn will default to info.
         - name: LOG_LEVEL
           value: "info"
+        - name: BACKEND_TIMEOUT
+          value: "15"
         # Set to "true" to enable the CymbalBank logo + title
         # - name: CYMBAL_LOGO
         #   value: "false"
@@ -108,13 +111,13 @@ spec:
             path: /ready
             port: 8080
           initialDelaySeconds: 10
-          periodSeconds: 5
-          timeoutSeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 30
         livenessProbe:
           httpGet:
             path: /ready
             port: 8080
-          initialDelaySeconds: 60
+          initialDelaySeconds: 10
           periodSeconds: 15
           timeoutSeconds: 30
         resources:

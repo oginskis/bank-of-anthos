@@ -73,6 +73,7 @@ kubectl create configmap initdb \
 ## Deploy Postgresql with helm
 
 ```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install accounts-db bitnami/postgresql-ha --values extras/gke-autopilot/helm-postgres-ha/values.yaml
 ```
 
