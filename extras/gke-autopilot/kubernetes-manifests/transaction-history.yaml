@@ -110,7 +110,7 @@ spec:
           timeoutSeconds: 10
         startupProbe:
           httpGet:
-            path: /ready
+            path: /healthy
             port: 8080
           initialDelaySeconds: 180
           failureThreshold: 30
