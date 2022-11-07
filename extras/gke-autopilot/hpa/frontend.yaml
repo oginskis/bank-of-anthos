@@ -42,5 +42,5 @@ spec:
               resource.labels.forwarding_rule_name: <default-frontend>
         target:
           type: AverageValue
-          averageValue: "8"
+          averageValue: "5"
 # [END gke_boa_kubernetes_manifests_frontend_horizontal_pod_autoscaler_frontend]

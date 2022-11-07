@@ -42,5 +42,5 @@ spec:
         #     "metric.labels.database": "accounts-db"
       target:
           type: AverageValue
-          averageValue: "20"
+          averageValue: "15"
 # [END gke_boa_kubernetes_manifests_postgresql_horizontal_pod_autoscaler_postgresql]
