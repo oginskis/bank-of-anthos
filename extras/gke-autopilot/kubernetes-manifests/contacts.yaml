@@ -26,7 +26,7 @@ spec:
       labels:
         app: contacts
     spec:
-      serviceAccountName: bank-of-anthos
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
         fsGroup: 1000
