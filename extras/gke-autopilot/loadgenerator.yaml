@@ -48,7 +48,7 @@ spec:
         command: ["/bin/sh", "-c", "locust --host http://$FRONTEND_ADDR --loglevel $LOG_LEVEL --headless --users $USERS --spawn-rate $SPAWN_RATE"]
         env:
         - name: FRONTEND_ADDR
-          value: "34.120.19.117:80"
+          value: "<frontend-ip-address>:80"
         - name: USERS
           value: "250"
         - name: SPAWN_RATE
